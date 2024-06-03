@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cont{
+            display: flex;
+            width: 60%;
+            height: 300px;
+            margin: auto;
+            justify-content: space-around;
+             border: 5px solid  black;
+             margin-top: 5%;
+            background-image: url(https://images.pexels.com/photos/21857001/pexels-photo-21857001/free-photo-of-a-dark-green-leafy-plant-with-dark-leaves.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load);
+        }
+        #cont>h1{
+             margin-top: 90px;
+             margin-bottom: 90px;
+              padding: 20px;
+              font-size: 70px;
+            padding-top: 25px;
+             width: 10%;
+             text-align: center;
+             align-items: center;
+              font-family: 'Times New Roman', Times, serif;
+             background-color: chartreuse;
+             background-image: url(https://images.unsplash.com/photo-1578885136359-16c8bd4d3a8e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+            color: rgb(38, 0, 255);
+        }
+        body{
+          background-image: url(https://images.pexels.com/photos/21330203/pexels-photo-21330203/free-photo-of-woman-walking-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+        }
+        #btn{
+            text-align: center;
+            margin-top: 20px;
+            
+        }
+        button{
+            width: 150px;
+            height: 35px;
+            font-weight: bolder;
+            cursor: pointer;
+            font-size: larger;
+            background-color: rgb(38, 255, 0);
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            border: 2px solid gold;
+        }
+        .dot{
+            margin: 0%;
+            width:  0%;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-decoration: underline; color: rgb(9, 255, 0); text-align: center;margin-top: 100px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size: 50px;">THE TIMER CLOCK</h1>
+    <div id="cont">
+        <h1 id="hour">00</h1>
+        <h1 class="dot">:</h1>
+        <h1 id="min">00</h1>
+        <h1 class="dot">:</h1>
+        <h1 id="sec">00</h1>
+        <h1 class="dot">:</h1>
+        <h1 id="nano">00</h1>
+    </div>
+    <div id="btn">
+        <button onclick="stop()">STOP</button>
+        <button onclick="start()">START</button>
+    </div>
+    
+</body>
+</html>
+<script>
+
+    
+    var hourEl=document.getElementById("hour");
+    var minEl=document.getElementById("min");
+    var secEl=document.getElementById("sec");
+    var nanoEl=document.getElementById("nano");
+    
+    var intervalId; // Declare a variable to hold the interval ID
+
+    function start(){
+    
+        var hour=0;
+        var min=0;
+        var sec=0;
+        var nano=0;
+
+        intervalId = setInterval(function(){
+            nano++
+            if(nano>=60){
+                sec++
+                nano=0;
+                if(sec>=60){
+                    sec=0
+                    min++;
+                    if(min>=60){
+                        min=0;
+                        hour++;
+                        if(hour>=24){
+                            hour=0;
+                        }
+                    }
+                }
+            }
+            hourEl.innerText=hour;
+            minEl.innerText=min;
+            secEl.innerText=sec;
+            nanoEl.innerText=nano;
+
+        },25)
+    }
+
+    function stop(){
+        clearInterval(intervalId); // Clear the interval
+    }
+</script>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .product{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 15px;
+            font-size: larger;
+            color: white;
+        }
+         img{
+            width: 40%;
+            height: 550px;
+            margin-top: 15px;
+         }
+         h1{
+            margin: auto;
+            text-align: center;
+            background-color: black;
+            color: white;
+         }
+         #total{
+            display: flex;
+            justify-content: space-around;
+            font-size: xx-large;
+         }
+       body{
+        background-color: rosybrown;
+       }
+       #remove{
+        background-color: blue;
+        padding: 10px;
+        color: white;
+        border-radius: 5px;
+       }
+    </style>
+</head>
+<body>
+    <h1>Cart</h1>
+    <div id="cart"></div>
+</body>
+</html>
+
+<script>
+    var products =JSON.parse(localStorage.getItem("cart")) || [];
+    var cart =document.getElementById("cart");
+    if(products.length ==0){
+        cart.innerText="Cart is empty , add products to it !"
+    }else{
+        displayProducts();
+        calculateTotal();
+    }
+
+    function displayProducts(){
+        products.map(function (elem){
+            var div = document.createElement("div");
+            div.setAttribute("class","product");
+            var image =document.createElement("img");
+            image.setAttribute("src",elem.image_url);
+            image.setAttribute("alt",elem.name);
+            
+            var name=document.createElement("h5");
+            name.innerText=elem.name;
+
+            var delbtn=document.createElement("button");
+            delbtn.innerText="Remove"
+            delbtn.setAttribute("id","remove");
+            delbtn.addEventListener("click",function(){
+                removeFromCart(elem.id);
+            });
+            var price=document.createElement("p");
+            price.innerText=elem.price;
+            div.append(image,name,price,delbtn);
+            cart.append(div);
+           
+        });
+    }
+
+    function calculateTotal(){
+        var total = products.reduce(function(acc, curr)  {
+            return acc+curr.price;
+        }, 0);
+        console.log(total,"total cart value")
+        var cartVal = document.createElement("h5");
+        cartVal.innerText="Rs-"+ total;
+        var p = document.createElement("p");
+        p.innerText="Total";
+        var div = document.createElement("div");
+        div.append(p,cartVal);
+        div.setAttribute("id","total");
+        document.querySelector("body").append(div);
+    }
+    function removeFromCart(){
+         
+        
+    }
+</script>

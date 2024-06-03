@@ -1,0 +1,95 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    text-align: center;
+    background-image: url(https://www.desktopbackground.org/download/2880x1800/2011/01/01/135333_the-joker-ronald-mcdonald_4520x2584_h.jpg);
+    background-size: cover; /* Ensures the image covers the whole area */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed on scroll */
+    background-position: center; /* Centers the image */
+}
+
+#slideshow{
+    padding: 2%;
+    margin-left: 200px;
+    display: block;
+   
+}
+#slideshow img{
+    width: 80%;
+    height: 400px;
+    object-fit: cover;
+
+}
+
+/* h1 {
+    margin-top: 20px;
+    font-size: 55px;
+    color: rgb(214, 15, 15);
+} */
+ 
+ 
+
+.menu {
+    margin: 20px auto;
+    width: 300px;
+    height: 250px;
+    text-align: left;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: bolder;
+     
+    background-image: url( https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-restaurant-menu-background-material-image_172144.jpg);
+    background-repeat: no-repeat;
+}
+
+
+label input{
+    margin-bottom: 15px;
+    margin-left: 95px;
+}
+
+#orderButton {
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #d21414;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    border-radius: 10px;
+}
+
+#orderButton:hover {
+    background-color: #ff9900;
+}
+
+#orderDetails {
+    margin-top: 20px;
+    position: relative;
+}
+
+#orderId {
+    font-size: 20px;
+    background-color: #000000;
+    color: #ffcc00;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+     
+}
+ h2{
+    text-align: center;
+ }
+#foodImage img {
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-top: 50px;
+}
+ 

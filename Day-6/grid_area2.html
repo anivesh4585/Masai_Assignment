@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+        *{
+            background-color: black;
+            
+        }
+     
+        #container>div{
+             background-color: rgb(70, 72, 72);
+            text-align: center;
+             padding-left: 30px;
+             padding-top: 30px;
+            border-radius: 10px;
+             text-align: center;
+             text-align: left;
+            color: white;
+             font-size: 55px;
+             
+              
+        }
+       
+        #container{
+             margin:30px 200px;
+             width: 67%;
+             height: 450px;
+            display: grid;
+            grid-template-columns: repeat(4,210px);
+            grid-template-rows: repeat(2,150px);
+            gap: 20px ;
+             padding: 30px 50px;
+             
+           grid-template-areas: 
+                          "a a b e "
+                          "c d b e"  ;
+           background-color: white;
+         
+        }
+        #c1{
+            grid-area: a;
+               
+        }
+        #c2{
+            grid-area: b;
+              
+        }
+        #c3{
+            grid-area: c;
+        }
+        #c4{
+            grid-area: d;
+        }
+        #c5{
+            grid-area: e;
+            height: 320px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="c1">A</div>
+        <div id="c2">B</div>
+        <div id="c3">C</div>
+        <div id="c4">D</div>
+        <div id="c5">E</div>
+    </div>
+</body>
+</html>

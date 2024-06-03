@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="style.css" />
+   <style>
+     
+    #container{
+         display: flex;
+         justify-content: space-around;
+          margin: auto;
+          width: 45%;
+          
+           /* border: 5px solid red; */
+           margin-left: 512px;
+           margin-top: 100px;
+        background-color: rgb(90, 90, 95);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+          border-radius: 10px;
+          color: rgb(255, 255, 255);
+          font-weight: bolder;
+          box-sizing: border-box;
+    }
+    #container div{
+        margin: 10px;
+        
+    }
+    #top_nav{
+        position: absolute;
+        top: 0.5px;
+        width: 60%;
+        height: 75px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background-color: rgb(0, 0, 0);
+        color: aliceblue;
+       margin-left: 500px;
+       box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    }
+     img{
+        margin-top: 5px;
+        margin-bottom: 0px;
+         
+     }
+     #err{
+        width: 100%;
+         
+         
+     }
+     body{
+          background-color: rgb(4, 27, 45);
+        }
+    button:hover{
+        background-color: rgb(255, 0, 0);
+        
+        color: aliceblue;
+        cursor: pointer;
+        height: 35px;
+        border-radius: 5px;
+    }
+   </style>
+</head>
+<body>
+    <button class="nav-btn open-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+  
+     
+  
+      <div class="nav nav-black">
+        <div class="nav nav-red">
+          <div class="nav nav-white">
+            <button class="nav-btn close-btn">
+              <i class="fas fa-times"></i>
+            </button>
+         
+            <img
+              src=" https://s3.amazonaws.com/ionic-marketplace/omdb-search/icon.png "
+              alt="Logo"
+              class="logo"
+            />
+  
+            <ul class="list">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Bollywood</a></li>
+              <li><a href="#">Hollywood</a></li>
+              <li>
+                <ul>
+                  <li><a href="#">Top Picks</a></li>
+                  <li><a href="#">Documentry</a></li>
+                  <li><a href="#">Adventure & Thriller</a></li>
+                  <li><a href="#">WebSeries</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    <!-- top nav or search bar -->
+    <div id="top_nav">
+       <h1>OMdb Movie Search</h1>
+        <input type="text" name="" id="search">
+        <button onclick="getData()">SEARCH</button>  
+    </div>  
+   
+    <div id="container"></div>
+</body>
+</html>
+ 
+<script>
+//  movie search code connected to server
+let container = document.getElementById("container");
+    let apikey = "fcca97d6";
+
+    async function getData() {
+        try {
+            let search = document.getElementById("search").value;
+            let url = `http://www.omdbapi.com/?apikey=${apikey}&t=${search}`;
+            let res = await fetch(url);
+            let data = await res.json();
+            console.log(data);
+            if (data.Error) {
+                container.innerHTML = "";
+                let errormessageElement = document.createElement("img");
+                errormessageElement.src = "https://comodosslstore.com/blog/wp-content/uploads/2024/01/website-page-found-error-robot-character-broken-chatbot-mascot-disabled-site-technical-work_502272-1888.jpg";
+                errormessageElement.setAttribute("id", "err");
+                container.append(errormessageElement);
+            } else {
+                displayData(data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function displayData(Movie) {
+        container.innerHTML = "";
+
+        let movieCard = document.createElement("div");
+        let datacard = document.createElement("div");
+
+        let poster = document.createElement("img");
+        poster.src = Movie.Poster;
+
+        let title = document.createElement("p");
+        title.textContent = "Title : " + Movie.Title;
+
+        let runtime = document.createElement("p");
+        runtime.textContent = "Runtime : " + Movie.Runtime;
+
+        let released = document.createElement("p");
+        released.textContent = "Release Date : " + Movie.Released;
+
+        let Genere = document.createElement("p");
+        Genere.textContent = "Type : " + Movie.Genre;
+
+        let rating = document.createElement("p");
+        rating.textContent = "Rating : " + Movie.Ratings[0].Value;
+
+        let language = document.createElement("p");
+        language.textContent = "Language : " + Movie.Language;
+
+        let plot = document.createElement("p");
+        plot.textContent = "Plot : " + Movie.Plot;
+
+        // Extract and check the IMDb rating
+        let imdbRatingValue = parseFloat(Movie.Ratings[0].Value.split('/')[0]);
+        if (imdbRatingValue > 8.5) {
+            let recommendedTag = document.createElement("span");
+            recommendedTag.textContent = "Recommended";
+            recommendedTag.style.color = "gold";
+            recommendedTag.style.fontWeight = "bold";
+            title.append(" ", recommendedTag);
+        }
+
+        let btn = document.createElement("button");
+        btn.textContent = "Watch Now";
+
+        movieCard.append(poster);
+        datacard.append(title, runtime, released, Genere, rating, language, plot, btn);
+
+        container.append(movieCard, datacard);
+    }
+
+    // below code of side navbar
+
+const openButton = document.querySelector(".open-btn");
+const closeButton = document.querySelector(".close-btn");
+const navs = document.querySelectorAll(".nav");
+
+openButton.addEventListener("click", () =>
+  navs.forEach((nav) => nav.classList.add("visible"))
+);
+
+closeButton.addEventListener("click", () =>
+  navs.forEach((nav) => nav.classList.remove("visible"))
+);
+</script>

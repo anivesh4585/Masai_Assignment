@@ -1,0 +1,26 @@
+ 
+.container{
+    display: flex;
+    margin: auto;
+    width: 90%;
+    
+}
+.card{
+    width: 30%;
+    text-align: center;
+    margin: auto;
+    background-color:white;
+    margin-bottom: 20px;
+}
+.image{
+    width: 100%;
+     
+}
+.button{
+    background-color: rgb(23, 227, 234);
+    border: none;
+}
+body{
+    background-color: whitesmoke;
+}
+ 

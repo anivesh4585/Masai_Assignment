@@ -1,0 +1,109 @@
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  background-color: greenyellow;
+}
+table td,
+table th {
+  border: 1px solid #080808;
+  padding: 8px;
+  text-align: center;
+}
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0468aa;
+  color: white;
+  text-align: center;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+#navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color: darkblue;
+  padding: 0px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+#filterVenue {
+  margin-left: 40px;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: rgb(30, 121, 163);
+  color: white;
+  margin-top: 40px;
+  font-weight: bold;
+}
+
+.heading {
+  margin-bottom: 100px;
+  text-align: center;
+  color:goldenrod;
+   font-size: 50px ;
+  font-weight: bold;
+}
+video
+{
+
+    position: absolute;
+    left:00px;
+    bottom: 00px;
+    z-index: -2;
+    height: auto;
+    width: 100%;
+    min-width: 100%;
+    min-height: 90%;
+    filter: blur(100);
+}
+#masaiForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#masaiForm > input,
+#masaiForm > select {
+  margin: 0px 10px;
+  padding: 10px;
+  background-color: darkgrey;
+  color: black;
+  font-size: medium;
+}
+#masaiForm > input[type="submit"] {
+  background-color:blue;
+  border: 0;
+  color: white;
+  padding: 15px 20px;
+  font-weight: bold;
+  /* border: 5px solid black; */
+  cursor: pointer;
+}
+
+#masaiForm > input[type="submit"]:hover{
+  background-color: greenyellow;
+  color: black;
+}
+.fav{
+  color:blue;
+  cursor: pointer;
+  font-weight: bold;
+  }
+.remove{
+  color: red;
+  font-size: larger;
+  font-weight: bold;
+  cursor: pointer;
+  }
+
+ 

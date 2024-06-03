@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div>h1{
+            color: teal;
+            text-align: center;
+            font-size: 50px;
+        }
+        #parent{
+            height: 430px;
+            width: 390px;
+            /* border: 1px solid red; */
+            margin: auto;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; 
+            padding-top: 15px;
+            border-radius: 10px;       
+        }
+        .c1{
+            height: 60px;
+            width: 262px;
+            /* border: 1px solid rebeccapurple; */
+            margin-top: 40px;
+            margin-left: 58px;
+            border-radius: 10px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;        }
+        .c2{
+            height: 60px;
+            width: 60px;
+            /* border: 1px solid black; */
+           margin-left: 8px;
+           box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;   
+           border-radius: 10px;    
+         }
+        #child{
+            display: flex;
+            margin-top: 10px;
+            margin-left: 50px;
+            margin-right: 40px;
+            
+        }
+        .t {
+            text-align: center;
+             
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Masai Calculator</h1>
+    </div>
+    <div id="parent">
+
+        <div class="c1"></div>
+
+        <div id="child">
+            <div class="c2">
+                <h3 class="t">1</h3>
+            </div>
+            <div class="c2">
+                <h3 class="t">2</h3>
+            </div>
+            <div class="c2">
+                <h3 class="t">3</h3>
+            </div>
+            <div class="c2" style="background-color: black;">
+                <h3 class="t" style="color: white;">+</h3>
+            </div> 
+        </div>
+        <div id="child">
+            <div class="c2">
+                <h3 class="t">4</h3>
+            </div>
+            <div class="c2">
+                <h3 class="t">5</h3>
+            </div>
+            <div class="c2">
+                <h3 class="t">6</h3>
+            </div>
+            <div class="c2" style="background-color: black;">
+                <h3 class="t" style="color: white;">-</h3>
+            </div> 
+        </div>  
+        
+        <div id="child">
+            <div class="c2">
+                <h3 class="t">7</h3>
+            </div>
+            <div class="c2">
+                <h3 class="t">8</h3>
+            </div>
+            <div class="c2">
+                <h3 class="t">9</h3>
+            </div>
+            <div class="c2" style="background-color: black;">
+                <h3 class="t" style="color: white;">*</h3>
+            </div>
+        </div>
+        <div id="child">
+            <div class="c2" style="background-color: red;">
+                <h3 class="t" style="color: white;">C</h3>
+            </div>
+            <div class="c2">
+                <h3 class="t">0</h3>
+            </div>
+            <div class="c2" style="background-color: black;">
+                <h3 class="t" style="color: white;">=</h3>
+            </div>
+            <div class="c2" style="background-color: black;">
+                <h3 class="t" style="color: white;">/</h3>
+            </div>
+        </div>   
+            
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="" id="num">
+    <button onclick="clickMe()">Submit</button>
+</body>
+</html>
+<script>
+    //User should be able to enter OTP and when clicking on submit make a new promise
+    //Promise should resolve if entered OTP is "1234" else reject
+ 
+function clickMe(){
+    let otp=document.getElementById("num").value;
+     
+    let otpPromise = new Promise(function(resolve,reject){
+        setTimeout(function(){
+            if(otp==1234){
+                resolve("otp is correct")
+            }else{
+                reject("otp is incorrect")
+            }
+        },2000);
+    })
+     otpPromise.then(function(data){
+        alert(data)
+     }).catch(function(data1){
+        alert(data1)
+     })
+}
+
+
+</script>

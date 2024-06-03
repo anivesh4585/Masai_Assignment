@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+             
+            overflow: hidden;
+        }
+        a{
+            text-decoration: none;
+            font-size: 20px;
+            background-color: rgb(0, 255, 251);
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            width: 65px;
+            height: 30px;
+            text-align: center  ;
+            padding: 10px;
+            padding-top:15px;
+            margin-top: 255px;
+            align-items: center;
+        }
+        a:hover{
+            border:3px solid #ff0000;
+        }
+        video
+            {
+                position: absolute;
+                left:00px;
+                bottom: 00px;
+                z-index: -2;
+                height: auto;
+                /* width: 100%; */
+                min-width: 100%;
+                min-height: 100%;
+                filter: blur(100);
+            }
+        h1 {
+            font-size: 4em;
+            color: #00ffff;
+            position: absolute;
+            top: -100vh; /* Start position outside of the viewport */
+            animation: fall 2s ease-out forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -100vh; /* Start outside of the viewport */
+            }
+            80% {
+                top: -10px; /* Main position */
+            }
+            90% {
+                top: -50px; /* Slight bounce effect */
+            }
+            100% {
+                top: 50%; /* End at the middle of the viewport */
+                transform: translateY(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the text to speech convertor!</h1>
+    <a href="voices.html">START</a>
+    <video autoplay loop play-inline  >
+        <source src="Futuristic interface _ HUD sound effects.mp4">
+            video is not load
+        </video>
+
+</body>
+</html>

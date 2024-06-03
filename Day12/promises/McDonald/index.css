@@ -1,0 +1,92 @@
+/* styles.css */
+*{
+    margin: 0%;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    text-align: center;
+    background-image: url( https://analyticsindiamag.com/wp-content/uploads/2021/12/mcd-banner_11zon.jpg);
+    background-size: cover; /* Ensures the image covers the whole area */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed on scroll */
+    background-position: center; /* Centers the image */
+}
+
+#slideshow{
+    padding: 2%;
+    /* margin-left: 0px; */
+    display: block;
+   
+}
+#slideshow img{
+    width: 50%;
+    height: 400px;
+    object-fit: cover;
+
+}
+a{
+    color: #ffcc00;
+    font-size: 35px;
+    cursor: pointer;
+    text-decoration: none;
+}
+ 
+ 
+p{
+    text-align: center;
+    font-size: large;
+    font-weight: bolder;
+    color: #000000;
+}
+/* h1 {
+    margin-top: 20px;
+    font-size: 55px;
+    color: rgb(214, 15, 15);
+} */
+h1 {
+    margin-top: 20px;
+    font-size: 45px;
+    color: rgb(214, 15, 15);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(to right, #a3a0a0, #fff12b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* nav bar css */
+.navbar {
+    background-color: #000000;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0%;
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ff6347;
+}
+
+
+ 
+
+ 
+ 
+
+ 
+ 
