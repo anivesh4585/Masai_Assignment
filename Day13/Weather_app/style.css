@@ -1,0 +1,144 @@
+body{
+    /* background-image: url( ); */
+    background-color: cornflowerblue;
+}
+*{
+    margin: 0%;
+}
+#show{
+    margin-top: 20px;
+    padding: 20px;
+    margin: auto;
+}
+#parent{
+    width: 100%;
+    height: 100px;
+    background-color: rgb(207, 207, 204);
+    display: flex;
+     
+    /* justify-content: space-between; */
+}
+#c2{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 35px;
+}
+#c1{
+    width: 50%;
+    padding: 25px;
+}
+input{
+    width: 70%;
+    height: 42px;
+    align-items: center;
+    border-radius: 10px;
+    border: 0;
+    margin-left: 25px;
+}
+#btn{
+    width: 20%;
+    height: 42px;
+    background-color: rgb(30, 27, 27);
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+}
+#unit{
+    width: 45%;
+    height:40px ;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(193, 193, 193);
+    padding-top: px;
+    margin-top: -8px;
+    border-radius: 10px;
+    position: relative;
+}
+#unit button {
+    width: 50%;
+    height: 100%;
+    border: none;
+    background: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.active {
+     
+    color: rgb(25, 181, 4);
+}
+.inactive {
+    
+    color: gray;
+}
+button{
+     
+    height: 35px;
+     cursor: pointer;
+    border-radius: 10px;
+}
+.fa-solid{
+    margin-top: 10px;
+    margin-left: -20px;
+}
+#c2 >button{
+    margin-left: -50px;
+}
+.frame{
+  
+ margin-right: 42px;
+ margin-top: -100px;
+
+}
+
+/* data of all temp,pressurn etc css */
+
+#container > .data{
+    width: 40%;
+    border-radius: 20px;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+     /* background-image: url(https://images.unsplash.com/photo-1487147264018-f937fba0c817?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); */
+    background-color: rgb(221, 212, 212);
+     align-items: center;
+    height: 400px;
+     margin-top: -105px;
+    padding-top: 30px;
+     color: rgb(0, 0, 0);
+     font-size: 30px;
+ }
+#container{
+display: flex;
+justify-content: space-evenly;
+margin-top: 150px;
+}
+
+.name{
+font-size: 50px;
+color: rgb(194, 52, 0);
+text-align: left;
+margin-bottom: 20px;
+}
+.date{
+color: rgb(17, 0, 248);
+font-size: 35px;
+
+}
+.temp{
+margin-top: 25px;
+font-size: 50px;
+}
+p{
+color: rgb(0, 0, 0);
+margin-left: 45px;
+font-weight: bolder;
+}
+
+#err{
+margin-top: -110px;
+width: 50%;
+height: 400px;
+}

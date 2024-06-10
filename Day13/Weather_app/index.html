@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/037c811e22.js" crossorigin="anonymous"></script>
+
+    <style>
+   
+</style>
+
+</head>
+<body>
+    <div id="parent">
+        <div id="c1"> 
+            <input type="text" name="" id="city" placeholder="Enter City Name">
+            <button id="btn" onclick="getWeather()">Search</button>
+        </div>
+        <div id="c2">
+            <div><i class="fa-solid fa-location-arrow"></i></div>
+            <button>Different Weather ?</button>
+            <div id="unit">
+                <button id="metricBtn" class="active" onclick="toggleUnits('metric')">Metric:°C,m/s</button>
+                <button id="imperialBtn" class="inactive" onclick="toggleUnits('imperial')">Imperial:°F,mph</button>
+            </div>
+        </div>
+    </div>
+    
+   
+    <div id="container"></div>
+
+ 
+</body>
+</html>
+<script>
+    let container = document.getElementById("container");
+    let appid = `1b9fc9c7ecfb8a83a7a6a07adb5c38ac`;
+
+    async function getWeather() {
+        try {
+            let city = document.getElementById("city").value;
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appid}&units=metric`;
+            let res = await fetch(url);
+            let data = await res.json();
+            console.log(data);
+            if (data.cod === "404") {
+                    container.innerHTML = "";
+                    let errormessageElement = document.createElement("img");
+                    errormessageElement.src = "https://comodosslstore.com/blog/wp-content/uploads/2024/01/website-page-found-error-robot-character-broken-chatbot-mascot-disabled-site-technical-work_502272-1888.jpg";
+                    errormessageElement.setAttribute("id", "err");
+                    container.append(errormessageElement);
+                } else {
+                    displayData(data);
+                }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function displayData(data) {
+        container.innerHTML = "";
+
+        let weatherCard = document.createElement("div");
+        weatherCard.setAttribute("class","data");
+
+        let nameElement = document.createElement("p");
+        nameElement.textContent = `  ${data.name}`;
+        nameElement.setAttribute("class","name")
+
+        let dateElement = document.createElement("p");
+        let now = new Date();
+        let options = { day: 'numeric', month: 'long', year: 'numeric' };
+        dateElement.textContent = `  ${now.toLocaleDateString('en-US', options)} ${now.toLocaleTimeString('en-US')}`;
+        dateElement.setAttribute("class","date")
+
+        let tempElement = document.createElement("p");
+        tempElement.textContent = `  ${data.main.temp}°C`;
+        tempElement.setAttribute("class","temp")
+ 
+         let feels_likeElement = document.createElement("p");
+        feels_likeElement.textContent = `Feels Like: ${data.main.feels_like}°C`;
+
+        let pressureElement = document.createElement("p");
+        pressureElement.textContent = `Pressure: ${data.main.pressure * 100} Pascal`;
+
+        let humidityElement = document.createElement("p");
+        humidityElement.textContent = `Humidity: ${data.main.humidity}%`;
+
+       
+
+        let dewPointElement = document.createElement("p");
+        let dewPoint = calculateDewPoint(data.main.temp, data.main.humidity);
+        dewPointElement.textContent = `Dew Point: ${dewPoint.toFixed(2)}°C`;
+
+        let visibilityElement = document.createElement("p");
+        visibilityElement.textContent = `Visibility: ${(data.visibility / 1000).toFixed(2)} km`;
+
+        weatherCard.append(
+            dateElement,
+            nameElement,
+            
+            tempElement,
+              feels_likeElement,
+            pressureElement,
+            humidityElement,
+           
+            dewPointElement,
+            visibilityElement
+        );
+
+        let iframe = document.createElement("iframe");
+        iframe.setAttribute("class", "frame");
+        iframe.src = `https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+        iframe.style.height = "400px";
+        iframe.style.width = "700px";
+
+        container.append(weatherCard, iframe);
+    }
+
+    function calculateDewPoint(temp, humidity) {
+        // Calculation of dew point using the Magnus formula
+        let a = 17.27;
+        let b = 237.7;
+        let alpha = ((a * temp) / (b + temp)) + Math.log(humidity / 100);
+        let dewPoint = (b * alpha) / (a - alpha);
+        return dewPoint;
+    }
+    function toggleUnits(unit) {
+            let metricBtn = document.getElementById('metricBtn');
+            let imperialBtn = document.getElementById('imperialBtn');
+            if (unit === 'metric') {
+                metricBtn.classList.add('active');
+                metricBtn.classList.remove('inactive');
+                imperialBtn.classList.add('inactive');
+                imperialBtn.classList.remove('active');
+                getWeather('metric');
+            } else {
+                metricBtn.classList.add('inactive');
+                metricBtn.classList.remove('active');
+                imperialBtn.classList.add('active');
+                imperialBtn.classList.remove('inactive');
+                getWeather('imperial');
+            }
+        }
+</script>
+
+<!-- check what is iframe sir speak about it -->
