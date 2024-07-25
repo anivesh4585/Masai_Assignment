@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+  <link rel="stylesheet" href="input.css">
+  <link rel="stylesheet" href="latest_movies.css">
+   <style>
+     
+     h1{
+        color: white;
+        font-size: 65px;
+        font-weight: 900;
+        text-align: left;
+         margin-top: 0px;
+         margin-left: 25px;
+         display: inline;
+
+         font-family: 'Arial', sans-serif;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 
+                         0 0 10px rgba(255, 255, 255, 0.5),
+                         0 0 20px rgba(255, 255, 255, 0.5),
+                         0 0 40px rgba(255, 255, 255, 0.5),
+                         0 0 80px rgba(255, 255, 255, 0.5),
+                         0 0 90px rgba(255, 255, 255, 0.5),
+                         0 0 100px rgba(255, 255, 255, 0.5),
+                         0 0 150px rgba(255, 255, 255, 0.5);
+            background: linear-gradient(to bottom, #fff, #ffe047);
+            -webkit-background-clip: text;
+            color: transparent;
+     }
+     #container{
+         display: flex;
+         justify-content: space-around;
+          margin: auto;
+          width: 45%;
+          
+           /* border: 5px solid red; */
+           margin-left: 400px;
+           margin-top: 50px;
+        background-color: rgb(0, 0, 0);
+        box-shadow: rgba(107, 244, 3, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+          border-radius: 10px;
+          color: rgb(255, 255, 255);
+          font-weight: bolder;
+          box-sizing: border-box;
+    }
+    #container div{
+        margin: 10px;
+        
+    }
+    #err{
+        width: 100%;
+    }
+    .btn1{
+         padding: 5px;
+         font-weight:bolder ;
+         background-color: rgb(50, 20, 220);
+         color: white;
+         cursor: pointer;
+         margin-left: 5px;
+    }
+    .btn2{
+        background-color: gold;
+        padding: 5px;
+         font-weight:bolder ;
+         
+         color: rgb(0, 0, 0);
+         cursor: pointer;
+         margin-left: 5px;
+    } 
+   </style>
+</head>
+<body>
+<!-- top nav -->
+ <h1>THE MOVIES'HUB</h1>
+    <div id="cont">
+    <div class="input-container">
+        <input type="text" id="search" placeholder="Search" oninput="throtleFunction()">
+        <button id="search-button" >
+            <svg width="20" height="20" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.05 5.02 12.52 3 9.5 3S3.95 5.02 3.95 8.39c0 3.37 2.53 5.39 5.55 5.39 1.31 0 2.53-.41 3.52-1.1l.27.28v.79l4.25 4.25 1.5-1.5-4.24-4.25zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5z"/>
+            </svg>
+        </button>
+        
+    </div>
+
+     </div>
+
+    <div id="movies"></div> <!-- for movie sugetions -->
+
+    <div id="container"></div> <!-- to display searched movie card -->
+
+     <div id="latest_movies"></div>
+     
+</body>
+</html>
+ 
+<script>
+//  movie search code connected to server
+let apikey = "fcca97d6";
+ 
+let latest = document.getElementById("latest_movies");
+
+// Fetch the latest movies on page load
+window.onload = () => {
+    getLatestMovies();
+};
+
+async function getLatestMovies() {
+    try {
+        let res = await fetch(`http://www.omdbapi.com/?apikey=${apikey}&s=latest`);
+        let data = await res.json();
+        console.log(data);
+        if (data.Response === "True") {
+            latestMovies(data.Search);
+        } else {
+            console.log(data.Error);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const latestMovies = (movieList) => {
+    latest.innerHTML = "";
+    movieList.forEach((movie) => {
+        // Use the correct properties from the movie object
+        let { Poster, Title, Year, imdbID } = movie;
+        
+        // Create elements for movie details
+        let movieCard = document.createElement("div");
+        movieCard.setAttribute("class", "movie_div");
+
+        let poster = document.createElement("img");
+        poster.src = Poster !== "N/A" ? Poster : "path/to/default-image.jpg"; // Fallback image
+
+        let title = document.createElement("p");
+        title.textContent = `Title: ${Title}`;
+
+        let year = document.createElement("p");
+        year.textContent = `Year: ${Year}`;
+
+        movieCard.append(poster, title, year);
+        latest.append(movieCard);
+
+          
+    });
+};
+
+  
+ 
+
+// for closure input debouncong*********************************
+let movie_div= document.getElementById("movies");
+
+let timerId;
+
+async function searchMovies() {
+    let search = document.getElementById("search").value;
+
+    if(search.length <= 2){
+        movie_div.style.display = "none";
+        return false;
+    }
+
+    let res = await fetch(`http://www.omdbapi.com/?apikey=${apikey}&s=${search}`);
+
+    let data = await res.json();
+    // console.log(data);
+    return data.Search;
+}
+
+function throtleFunction(){
+     
+
+    // valid timeid
+    if(timerId){
+        clearTimeout(timerId)
+    }
+
+    timerId = setTimeout(() => {
+        main()
+        timerId = undefined;
+    },500);
+
+//   console.log(timerId);
+}
+
+function appendMovies(movies) {
+            movie_div.innerHTML = "";
+            if (movies) {
+                movie_div.style.display = "block";
+                movies.forEach((movie) => {
+                    let p = document.createElement("p");
+                    p.innerText = movie.Title;
+                    movie_div.append(p);
+                    p.onclick = () => {
+                        getData(movie.Title);
+                        movie_div.style.display = "none";
+                    };
+                });
+            } else {
+                movie_div.style.display = "none";
+            }
+        }
+
+async function main() {
+        let movies = await searchMovies();
+        if (movies) {
+            appendMovies(movies);
+        } else {
+            movie_div.style.display = "none";
+        }
+    }
+// for showing movies-*********************************************
+
+let container = document.getElementById("container");
+     
+
+    async function getData(title) {
+        try {
+             
+            let url = `http://www.omdbapi.com/?apikey=${apikey}&t=${title}`;
+            let res = await fetch(url);
+            let data = await res.json();
+            console.log(data);
+            if (data.Error) {
+                container.innerHTML = "";
+                let errormessageElement = document.createElement("img");
+                errormessageElement.src = "https://comodosslstore.com/blog/wp-content/uploads/2024/01/website-page-found-error-robot-character-broken-chatbot-mascot-disabled-site-technical-work_502272-1888.jpg";
+                errormessageElement.setAttribute("id", "err");
+                container.append(errormessageElement);
+            } else {
+                displayData(data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function displayData(Movie) {
+        container.innerHTML = "";
+
+        let movieCard = document.createElement("div");
+        let datacard = document.createElement("div");
+
+        let poster = document.createElement("img");
+        poster.src = Movie.Poster;
+
+        let title = document.createElement("p");
+        title.textContent = "Title : " + Movie.Title;
+
+        let runtime = document.createElement("p");
+        runtime.textContent = "Runtime : " + Movie.Runtime;
+
+        let released = document.createElement("p");
+        released.textContent = "Release Date : " + Movie.Released;
+
+        let Genere = document.createElement("p");
+        Genere.textContent = "Type : " + Movie.Genre;
+
+        let rating = document.createElement("p");
+        rating.textContent = "Rating : " + Movie.Ratings[0].Value;
+
+        let language = document.createElement("p");
+        language.textContent = "Language : " + Movie.Language;
+
+        let plot = document.createElement("p");
+        plot.textContent = "Plot : " + Movie.Plot;
+
+        // Extract and check the IMDb rating
+        let imdbRatingValue = parseFloat(Movie.Ratings[0].Value.split('/')[0]);
+        if (imdbRatingValue > 8.5) {
+            let recommendedTag = document.createElement("span");
+            recommendedTag.textContent = "(Recommended)";
+            recommendedTag.style.color = "gold";
+            recommendedTag.style.fontWeight = "bold";
+            title.append(" ", recommendedTag);
+        }
+
+        let btn1 = document.createElement("button");
+        btn1.textContent = "Watch Now";
+        btn1.setAttribute("class","btn1");
+
+        let btn2 = document.createElement("button");
+        btn2.textContent = "Download";
+        btn2.setAttribute("class","btn2");
+        movieCard.append(poster);
+        datacard.append(title, runtime, released, Genere, rating, language, plot, btn1,btn2);
+
+        container.append(movieCard, datacard);
+    }
+
+</script>

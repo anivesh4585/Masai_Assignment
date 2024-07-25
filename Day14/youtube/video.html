@@ -12,13 +12,21 @@
         body{
             background-color: black;
         }
+        p{
+            color: white;
+            text-align: center;
+            font-size: larger;
+             
+        }
     </style>
 </head>
 <body>
     <div id="videoContainer"></div>
     <script>
         const videoId = localStorage.getItem("videoId");
-
+        const title = localStorage.getItem("title");
+        const channelTitle = localStorage.getItem("channelTitle");
+        
         if (videoId) {
             const videoContainer = document.getElementById("videoContainer");
             const iframe = document.createElement("iframe");
@@ -27,7 +35,14 @@
             iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
             iframe.allowFullscreen = true;
 
-            videoContainer.appendChild(iframe);
+            let videoTitleElement = document.createElement("p");
+             videoTitleElement.textContent = title;
+             console.log(videoTitleElement);
+
+             let channelTitleElement = document.createElement("p");
+             channelTitleElement.textContent = channelTitle;
+
+            videoContainer.append(iframe,videoTitleElement,channelTitleElement);
         } else {
             console.error("No video ID found in local storage");
         }
