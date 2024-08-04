@@ -1,6 +1,9 @@
 body{
     /* background-image: url( ); */
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
+    background-image: url( https://images.pexels.com/photos/409696/pexels-photo-409696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-size: cover;
+    
 }
 *{
     margin: 0%;
@@ -102,7 +105,8 @@ button{
     border-radius: 20px;
     /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
      /* background-image: url(https://images.unsplash.com/photo-1487147264018-f937fba0c817?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); */
-    background-color: rgb(221, 212, 212);
+    /* background-color: rgb(221, 212, 212); */
+    background-image: url();
      align-items: center;
     height: 400px;
      margin-top: -105px;
@@ -132,7 +136,7 @@ margin-top: 25px;
 font-size: 50px;
 }
 p{
-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
 margin-left: 45px;
 font-weight: bolder;
 }
